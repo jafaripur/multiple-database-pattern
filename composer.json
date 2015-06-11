@@ -1,0 +1,16 @@
+{
+    "name": "Multiple Database access pattern",
+    "description": "Pattern for multiple database use in application",
+    "authors": [
+        {
+            "name": "Araz Jafaripur",
+            "email": "mjafaripur@yahoo.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-0": {
+            "Jafaripur": "lib/"
+        }
+    }
+}
