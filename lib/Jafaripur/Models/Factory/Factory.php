@@ -20,11 +20,12 @@ abstract class Factory {
 	 *
 	 * @author A.Jafaripur <mjafaripur@yahoo.com>
 	 * 
-	 * @param string $namespace
+	 * @param string $database
+	 * @param string $model
 	 * @return Object
 	 */
-	protected static function getClass($database) {
-		$namespace = "Jafaripur\\Models\\{$database}\\Users";
+	protected static function getClass($database, $model) {
+		$namespace = "Jafaripur\\Models\\{$database}\\{$model}";
 		if (!array_key_exists($namespace, self::$classes)) {
 			self::$classes[$namespace] = new $namespace;
 		}
