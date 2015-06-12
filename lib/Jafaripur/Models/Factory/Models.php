@@ -21,8 +21,7 @@ class Models extends Factory {
 	 * @return Jafaripur\ModelsInterfaces\Users User model
 	 */
 	public static function getUsers($database = self::MONGO) {
-		$namespace = self::getClassName($database);
-		return self::getClass($namespace);
+		return self::getClass($database);
 	}
 
 }
