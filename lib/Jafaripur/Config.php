@@ -13,6 +13,7 @@ abstract class Config{
 	
 	private static $config = [
 		'MongoDB' => [
+			'driver' => 'MongoDB',
 			'server' => 'localhost',
 			'port' => 27017,
 			'username' => '',
@@ -20,6 +21,7 @@ abstract class Config{
 			'dbName' => 'test',
 		],
 		'MySQL' => [
+			'driver' => 'MySQL',
 			'server' => 'localhost',
 			'username' => 'jafaripur',
 			'password' => '123456',

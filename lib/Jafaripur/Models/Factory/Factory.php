@@ -23,15 +23,14 @@ abstract class Factory {
 	 * @author A.Jafaripur <mjafaripur@yahoo.com>
 	 * 
 	 * @param string $dbConfigName
-	 * @param string $database
 	 * @param string $model
 	 * @return Object
 	 */
-	protected static function getClass($dbConfigName, $database, $model) {
-		$namespace = "Jafaripur\\Models\\{$database}\\{$model}";
+	protected static function getClass($dbConfigName, $model) {
+		$config = Config::getConfiguration($dbConfigName);
+		$namespace = "Jafaripur\\Models\\{$config['driver']}\\{$model}";
 		$key = $dbConfigName.$namespace;
 		if (!array_key_exists($key, self::$classes)) {
-			$config = Config::getConfiguration($dbConfigName);
 			self::$classes[$key] = new $namespace($config);
 		}
 
