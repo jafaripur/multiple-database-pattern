@@ -1,4 +1,5 @@
 <?php
+
 namespace Jafaripur\ModelsInterfaces;
 
 /**
@@ -9,9 +10,8 @@ namespace Jafaripur\ModelsInterfaces;
  * @author A.Jafaripur <mjafaripur@yahoo.com>
  * 
  */
+interface Users {
 
-interface Users{
-	
 	/**
 	 * add new user
 	 * 
@@ -19,5 +19,4 @@ interface Users{
 	 * @return boolean
 	 */
 	public function addNewUser(array $fields);
-	
 }

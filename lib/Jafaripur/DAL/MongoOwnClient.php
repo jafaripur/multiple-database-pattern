@@ -1,4 +1,5 @@
 <?php
+
 namespace Jafaripur\DAL;
 
 /**
@@ -9,31 +10,31 @@ namespace Jafaripur\DAL;
  * @author A.Jafaripur <mjafaripur@yahoo.com>
  * 
  */
-abstract class MongoOwnClient extends \Mongo{
-	
+abstract class MongoOwnClient extends \Mongo {
+
 	const SERVER = 'localhost';
 	const USERNAME = '';
 	const PASSWORD = '';
 	const DB = 'test';
 	const PORT = 27017;
-		
-	public function __construct() {		
-		try{
+
+	public function __construct() {
+		try {
 			$options = [
 				//'db' => $this->_db,
 			];
-			if (!empty(self::USERNAME)){
+			if (!empty(self::USERNAME)) {
 				$options['username'] = self::USERNAME;
 			}
-			if (!empty(self::PASSWORD)){
+			if (!empty(self::PASSWORD)) {
 				$options['password'] = self::PASSWORD;
 			}
-			parent::__construct("mongodb://".self::SERVER.":" . self::PORT, $options);	
+			parent::__construct("mongodb://" . self::SERVER . ":" . self::PORT, $options);
 		} catch (\Exception $ex) {
-			echo '<p>'.$ex->getMessage() . "</p>";
+			echo '<p>' . $ex->getMessage() . "</p>";
 			echo $ex->getTraceAsString();
 			die();
 		}
 	}
-	
+
 }

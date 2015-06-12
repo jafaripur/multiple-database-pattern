@@ -1,6 +1,6 @@
 <?php
 include __DIR__ . DIRECTORY_SEPARATOR.'vendor'.DIRECTORY_SEPARATOR.'autoload.php';
-use Jafaripur\Models\ModelsFactory;
+use Jafaripur\Models\Factory\Models;
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,9 @@ use Jafaripur\Models\ModelsFactory;
     </head>
     <body>
 		<?php
-		$mongoUser = ModelsFactory::getUsers(ModelsFactory::MONGO);
-		$mongoUser2 = ModelsFactory::getUsers(); // Default database mode is over MongoDB
-		$mysqlUser = ModelsFactory::getUsers(ModelsFactory::MYSQL);
+		$mongoUser = Models::getUsers(Models::MONGO);
+		$mongoUser2 = Models::getUsers(); // Default database mode is over MongoDB
+		$mysqlUser = Models::getUsers(Models::MYSQL);
 		$fields = [
 			'name' => 'Araz2',
 			'family' => 'Jafaripur2',

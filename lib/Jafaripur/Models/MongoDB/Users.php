@@ -10,7 +10,7 @@ use Jafaripur\ModelsInterfaces\Users as UsersInterface;
  * @author A.Jafaripur <mjafaripur@yahoo.com>
  * 
  */
-class Users extends MongoOwnClient implements UsersInterface{
+class Users extends MFongoOwnClient implements UsersInterface{
 	
 	const COLLECTION_NAME = 'users';
 	
