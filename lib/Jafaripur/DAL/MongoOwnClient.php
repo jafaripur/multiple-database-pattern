@@ -12,24 +12,29 @@ namespace Jafaripur\DAL;
  */
 abstract class MongoOwnClient extends \Mongo {
 
-	const SERVER = 'localhost';
-	const USERNAME = '';
-	const PASSWORD = '';
-	const DB = 'test';
-	const PORT = 27017;
+	protected $server;
+	protected $port;
+	protected $username;
+	protected $password;
+	protected $dbName;
 
-	public function __construct() {
+	public function __construct(array $config) {
 		try {
+			foreach($config as $key => $value){
+				if (property_exists($this, $key)){
+					$this->$key = $value;
+				}
+			}
 			$options = [
 					//'db' => $this->_db,
 			];
-			if (!empty(self::USERNAME)) {
-				$options['username'] = self::USERNAME;
+			if (!empty($this->username)) {
+				$options['username'] = $this->username;
 			}
-			if (!empty(self::PASSWORD)) {
-				$options['password'] = self::PASSWORD;
+			if (!empty($this->password)) {
+				$options['password'] = $this->password;
 			}
-			parent::__construct("mongodb://" . self::SERVER . ":" . self::PORT, $options);
+			parent::__construct("mongodb://" . $this->server . ":" . $this->port, $options);
 		} catch (\Exception $ex) {
 			echo '<p>' . $ex->getMessage() . "</p>";
 			echo $ex->getTraceAsString();

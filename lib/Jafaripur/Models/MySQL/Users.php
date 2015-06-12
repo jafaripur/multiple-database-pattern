@@ -13,8 +13,8 @@ use Jafaripur\ModelsInterfaces\Users as UsersInterface;
  */
 class Users extends MySQLOwnClient implements UsersInterface {
 
-	public function __construct() {
-		parent::__construct();
+	public function __construct($config) {
+		parent::__construct($config);
 	}
 
 	public function addNewUser(array $fields) {

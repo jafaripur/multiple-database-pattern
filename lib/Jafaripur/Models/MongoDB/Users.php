@@ -21,8 +21,8 @@ class Users extends MongoOwnClient implements UsersInterface {
 	];
 	protected static $collections = [];
 
-	public function __construct() {
-		parent::__construct();
+	public function __construct($config) {
+		parent::__construct($config);
 	}
 
 	public function addNewUser(array $fields) {
@@ -57,11 +57,14 @@ class Users extends MongoOwnClient implements UsersInterface {
 	 * 
 	 * @author A.Jafaripur <mjafaripur@yahoo.com>
 	 * 
-	 * @param string $db database name default (parent::DB)
 	 * @param string $collectionName collection name default (self::COLLECTION_NAME)
+	 * @param string $db database name, if null get the default db name from configuration
 	 * @return \MongoCollection
 	 */
-	public function getCollection($db = parent::DB, $collectionName = self::COLLECTION_NAME) {
+	public function getCollection($collectionName = self::COLLECTION_NAME, $db = null) {
+		if ($db == null){
+			$db = $this->dbName;
+		}
 		$key = $db . $collectionName;
 		if (!array_key_exists($key, self::$collections)) {
 			self::$collections[$key] = parent::selectCollection($db, $collectionName);

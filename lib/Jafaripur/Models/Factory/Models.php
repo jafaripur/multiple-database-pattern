@@ -17,11 +17,12 @@ class Models extends Factory {
 	 * 
 	 * @author A.Jafaripur <mjafaripur@yahoo.com>
 	 * 
+	 * @param string $dbConfigName database configration (default MongoDB)
 	 * @param string $database database provider (default MongoDB)
 	 * @return Jafaripur\ModelsInterfaces\Users User model
 	 */
-	public static function getUsers($database = self::MONGO) {
-		return self::getClass($database, 'Users');
+	public static function getUsers($dbConfigName = self::MONGO, $database = self::MONGO) {
+		return self::getClass($dbConfigName, $database, 'Users');
 	}
 
 }

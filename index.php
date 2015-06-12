@@ -10,9 +10,9 @@ use Jafaripur\Models\Factory\Models;
     </head>
     <body>
 		<?php
-		$mongoUser = Models::getUsers(Models::MONGO);
-		$mongoUser2 = Models::getUsers(); // Default database mode is over MongoDB
-		$mysqlUser = Models::getUsers(Models::MYSQL);
+		$mongoUser = Models::getUsers(Models::MONGO, Models::MONGO); // DB configuration can be string like an MongoDB
+		$mongoUser2 = Models::getUsers(); // Default database mode is over MongoDB and default db configuration
+		$mysqlUser = Models::getUsers(Models::MYSQL, Models::MYSQL); // DB configuration can be string like an MySQL
 		$fields = [
 			'name' => 'Araz2',
 			'family' => 'Jafaripur2',

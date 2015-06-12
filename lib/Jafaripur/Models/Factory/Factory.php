@@ -2,6 +2,8 @@
 
 namespace Jafaripur\Models\Factory;
 
+use Jafaripur\Config;
+
 /**
  * Abstract class for Models Factory
  * 
@@ -20,17 +22,20 @@ abstract class Factory {
 	 *
 	 * @author A.Jafaripur <mjafaripur@yahoo.com>
 	 * 
+	 * @param string $dbConfigName
 	 * @param string $database
 	 * @param string $model
 	 * @return Object
 	 */
-	protected static function getClass($database, $model) {
+	protected static function getClass($dbConfigName, $database, $model) {
 		$namespace = "Jafaripur\\Models\\{$database}\\{$model}";
-		if (!array_key_exists($namespace, self::$classes)) {
-			self::$classes[$namespace] = new $namespace;
+		$key = $dbConfigName.$namespace;
+		if (!array_key_exists($key, self::$classes)) {
+			$config = Config::getConfiguration($dbConfigName);
+			self::$classes[$key] = new $namespace($config);
 		}
 
-		return self::$classes[$namespace];
+		return self::$classes[$key];
 	}
 
 }

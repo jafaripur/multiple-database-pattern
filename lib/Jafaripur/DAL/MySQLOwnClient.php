@@ -12,18 +12,25 @@ namespace Jafaripur\DAL;
  */
 abstract class MySQLOwnClient extends \PDO {
 
-	const SERVER = 'localhost';
-	const USERNAME = 'jafaripur';
-	const PASSWORD = '123456';
-	const DB = 'test';
+	protected $server;
+	protected $username;
+	protected $password;
+	protected $dbName;
 
-	public function __construct() {
+	public function __construct(array $config) {
 		try {
+			
+			foreach($config as $key => $value){
+				if (property_exists($this, $key)){
+					$this->$key = $value;
+				}
+			}
+			
 			$options = array(
 				\PDO::ATTR_PERSISTENT => true,
 				\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
 			);
-			parent::__construct("mysql:dbname=" . self::DB . ";host=" . self::SERVER, self::USERNAME, self::PASSWORD, $options);
+			parent::__construct("mysql:dbname=" . $this->dbName . ";host=" . $this->server, $this->username, $this->password, $options);
 			$this->exec("SET NAMES utf8");
 		} catch (\PDOException $e) {
 			echo '<p>' . $ex->getMessage() . "</p>";
