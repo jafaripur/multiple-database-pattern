@@ -21,7 +21,7 @@ abstract class MongoOwnClient extends \Mongo {
 	public function __construct() {
 		try {
 			$options = [
-				//'db' => $this->_db,
+					//'db' => $this->_db,
 			];
 			if (!empty(self::USERNAME)) {
 				$options['username'] = self::USERNAME;
