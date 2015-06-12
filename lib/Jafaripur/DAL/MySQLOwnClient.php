@@ -20,6 +20,7 @@ abstract class MySQLOwnClient extends \PDO {
 	public function __construct() {
 		try {
 			$options = array(
+				\PDO::ATTR_PERSISTENT => true,
 				\PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
 			);
 			parent::__construct("mysql:dbname=" . self::DB . ";host=" . self::SERVER, self::USERNAME, self::PASSWORD, $options);
