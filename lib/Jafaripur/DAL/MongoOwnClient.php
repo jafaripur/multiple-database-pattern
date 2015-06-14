@@ -17,9 +17,12 @@ abstract class MongoOwnClient extends \Mongo {
 	protected $username;
 	protected $password;
 	protected $dbName;
+    protected $collectionName;
 
-	public function __construct(array $config) {
+	public function __construct(array $config, $collectionName = null) {
 		try {
+            
+            $this->collectionName = $collectionName;
 			foreach($config as $key => $value){
 				if (property_exists($this, $key)){
 					$this->$key = $value;
@@ -40,6 +43,30 @@ abstract class MongoOwnClient extends \Mongo {
 			echo $ex->getTraceAsString();
 			die();
 		}
+	}
+    
+    /**
+	 * get collection for doing CRUD or quering.
+	 * 
+	 * @author A.Jafaripur <mjafaripur@yahoo.com>
+	 * 
+	 * @param string $collectionName collection name default (self::COLLECTION_NAME)
+	 * @param string $db database name, if null get the default db name from configuration
+	 * @return \MongoCollection
+	 */
+	public function getCollection($collectionName = null, $db = null) {
+		if ($db == null){
+			$db = $this->dbName;
+		}
+        if ($collectionName == null){
+            $collectionName = $this->collectionName;
+        }
+		$key = $db . $collectionName;
+		if (!array_key_exists($key, static::$collections)) {
+			static::$collections[$key] = parent::selectCollection($db, $collectionName);
+		}
+
+		return static::$collections[$key];
 	}
 
 }
