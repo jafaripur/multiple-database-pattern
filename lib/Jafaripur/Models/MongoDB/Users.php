@@ -28,7 +28,7 @@ class Users extends MongoOwnClient implements UsersInterface {
 
 		$newFields = $this->filterInputField($fields);
 
-		$col = $this->getCollection();
+		$col = parent::getCollection();
 		return $col->insert($newFields);
 	}
 
