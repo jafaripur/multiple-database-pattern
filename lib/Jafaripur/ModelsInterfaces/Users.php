@@ -12,11 +12,11 @@ namespace Jafaripur\ModelsInterfaces;
  */
 interface Users {
 
-	/**
-	 * add new user
-	 * 
-	 * @param array $fields
-	 * @return boolean
-	 */
-	public function addNewUser(array $fields);
+    /**
+     * add new user
+     * 
+     * @param array $fields
+     * @return boolean
+     */
+    public function addNewUser(array $fields);
 }

@@ -13,17 +13,17 @@ use Jafaripur\ModelsInterfaces\Users as UsersInterface;
  */
 class Users extends MySQLOwnClient implements UsersInterface {
 
-	public function __construct($config) {
-		parent::__construct($config);
-	}
+    public function __construct($config) {
+        parent::__construct($config);
+    }
 
-	public function addNewUser(array $fields) {
+    public function addNewUser(array $fields) {
 
-		return parent::prepare("INSERT INTO `users`(`name`, `family`)VALUES(:name, :family)")
-				->execute([
-					'name' => $fields['name'],
-					'family' => $fields['family'],
-		]);
-	}
+        return parent::prepare("INSERT INTO `users`(`name`, `family`)VALUES(:name, :family)")
+                ->execute([
+                    'name' => $fields['name'],
+                    'family' => $fields['family'],
+        ]);
+    }
 
 }
