@@ -27,4 +27,9 @@ class Models
     {
         return Registry::getClass($dbConfigName, 'Users');
     }
+
+    public static function getTest($dbConfigName = self::MONGO)
+    {
+        return Registry::getClass($dbConfigName, 'Test');
+    }
 }

@@ -19,6 +19,8 @@ class Users extends MySQLOwnClient implements UsersInterface {
 
     public function addNewUser(array $fields) {
 
+        $test = \Jafaripur\Models\Factory\Models::getTest(\Jafaripur\Models\Factory\Models::MYSQL);
+        
         return parent::prepare("INSERT INTO `users`(`name`, `family`)VALUES(:name, :family)")
                 ->execute([
                     'name' => $fields['name'],
